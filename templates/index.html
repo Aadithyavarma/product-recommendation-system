@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product recommender</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+	<!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/new_css.scss') }}"> -->
+</head>
+<body>
+
+	<header>
+		<div class="container">
+		<div id="brandname">
+			Sentiment Based Product Recommendation System
+		</div>
+		<h2>Made by Aadi</h2>
+		
+	</div>
+	</header>
+
+	<div class="ml-container">
+
+		<form action="{{ url_for('predict')}}" method="POST">
+		<br>
+		<text id='text'> Enter the username: </text>
+		<input type="text" name="username" id='input_username'/>
+		<br/><br/>
+		<input type="submit" class="btn-info" value="Submit">
+		</form>
+		
+	</div>
+
+	<div>
+		{% if username %}
+			<p style="font-weight: bold; text-decoration: underline;"> Recommended Products for the user "{{ username }}" </p>
+			{% for product in final_product_list %}
+				<p> {{ product }} </p>
+			{% endfor %}
+		{% else %}
+			<p> {{ error_message }} </p>
+		{% endif %}
+	</div>
+
+
+</body>
+</html>
